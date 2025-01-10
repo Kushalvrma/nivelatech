@@ -76,7 +76,7 @@ class CryptoController extends GetxController {
   // Start monitoring the cryptocurrency prices and data refresh every 10 seconds
   void startPriceMonitoring() {
     // Fetch the updated data every 10 seconds
-    _dataRefreshTimer = Timer.periodic(Duration(seconds: 15), (timer) async {
+    _dataRefreshTimer = Timer.periodic(Duration(minutes: 5), (timer) async {
       await fetchUpdatedData(); // Fetch the latest data and prices
     });
 
@@ -85,7 +85,7 @@ class CryptoController extends GetxController {
     }
 
     // Price monitoring functionality (checking if target price is reached)
-    _priceCheckTimer = Timer.periodic(Duration(seconds: 5), (timer) async {
+    _priceCheckTimer = Timer.periodic(Duration(seconds: 10), (timer) async {
       if (selectedCryptoSymbol.isNotEmpty && targetPrice.value > 0) {
         // Search for the selected cryptocurrency by its symbol
         var currentCrypto = cryptoList.firstWhere(
